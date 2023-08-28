@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "685E750A-12D7-4494-96D0-9F08C38EE0F2",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:NoNa.xcodeproj",
+        "identifier" : "D2C7249B29C43D2B005C4D63",
+        "name" : "NoNa Check-In Tests"
+      }
+    }
+  ],
+  "version" : 1
+}

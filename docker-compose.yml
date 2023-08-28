@@ -1,0 +1,42 @@
+version: "3.9"
+services:
+  server:
+    container_name: nona_server-1
+    build: ./nona_back
+    command: sh -c "python3 ./app.py"
+    depends_on:
+      - nona_db
+    links:
+      - nona_db
+    ports:
+    - "5000:5000"
+    volumes:
+    - ./nona_back:/app
+    environment:
+      FLASK_ENV: development
+      OPENAI_API_KEY: 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
+  nona_db:
+    container_name: nona_db-1
+    build: ./database
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'nona_db'
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_USER: 'nona'  
+      MYSQL_PASSWORD: 'nona'
+    volumes:
+      - ./database/mysql:/var/lib/mysql
+    ports:
+      - '3306:3306'
+  web:
+    container_name: nona_web-1
+    build: ./nona_front
+    ports:
+    - "3000:3000"
+    volumes:
+    - ./nona_front/src:/app/src
+    - ./nona_front/public:/app/public
+    depends_on:
+    - server
+    environment:
+    - WATCHPACK_POLLING=true
